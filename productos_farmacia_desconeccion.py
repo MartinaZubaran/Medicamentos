@@ -8,8 +8,22 @@ Original file is located at
 
 PRODUCTOS DE FARMACIA PARA WEB SCRAPING
 
+
 Librerias
 """
+import subprocess
+
+# Ejecutar un comando de shell
+def run_shell_command(command):
+    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    if process.returncode != 0:
+        print(f"Error ejecutando el comando: {stderr.decode('utf-8')}")
+    else:
+        print(stdout.decode('utf-8'))
+
+# Ejemplo de uso:
+run_shell_command('apt-get install git')
 
 import requests
 from bs4 import BeautifulSoup
