@@ -24,4 +24,4 @@ jobs:
         pip install requests beautifulsoup4
 
     - name: Run scraping script
-      run: python scraping.py
+      run: python productos_farmacia_desconeccion.py
