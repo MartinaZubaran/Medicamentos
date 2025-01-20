@@ -159,3 +159,21 @@ for url in urls:
     except Exception as e:
         print(f"Error al scrapeando {url}: {e}")
 
+# Instalar Git si no está instalado
+!apt-get install git
+
+# Configuración de Git
+!git config --global user.name "MartinaZubaran"
+!git config --global user.email "martinazubaran@gmail.com"
+
+# Clonar el repositorio (solo la primera vez)
+!git clone https://github.com/MartinaZubaran/Medicamentos.git
+%cd tu_repositorio
+
+# Mover el archivo CSV generado a la carpeta del repositorio
+!mv /content/productos_scrapeados.csv ./productos_scrapeados.csv
+
+# Hacer commit y push
+!git add productos_scrapeados.csv
+!git commit -m "Subiendo archivo CSV automáticamente desde Colab"
+!git push origin main  # o la rama que estés usando
