@@ -184,10 +184,10 @@ subprocess.run(['git', 'config', '--global', 'user.email', 'martinazubaran@gmail
 
 # Clone the repository (only the first time)
 subprocess.run(['git', 'clone', 'https://github.com/MartinaZubaran/Medicamentos.git'], check=True)
-subprocess.run(['cd', 'tu_repositorio'], shell=True)
 
-# Move the generated CSV file to the repository folder
-subprocess.run(['mv', '/content/productos_scrapeados.csv', './productos_scrapeados.csv'], check=True)
+# Move to the repository directory
+subprocess.run(['mv', 'productos_scrapeados.csv', 'Medicamentos/productos_scrapeados.csv'], check=True)
+subprocess.run(['cd', 'Medicamentos'], shell=True)
 
 # Commit and push
 subprocess.run(['git', 'add', 'productos_scrapeados.csv'], check=True)
