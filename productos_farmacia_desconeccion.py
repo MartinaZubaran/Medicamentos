@@ -181,16 +181,6 @@ output_dir = 'Medicamentos'
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
-# Install Git if not installed
-subprocess.run(['sudo', 'apt-get', 'install', '-y', 'git'], check=True)
-
-# Git configuration
-subprocess.run(['git', 'config', '--global', 'user.name', 'MartinaZubaran'], check=True)
-subprocess.run(['git', 'config', '--global', 'user.email', 'martinazubaran@gmail.com'], check=True)
-
-# Clone the repository (only the first time)
-subprocess.run(['git', 'clone', 'https://github.com/MartinaZubaran/Medicamentos.git'], check=True)
-
 # Move the generated CSV file to the repository folder
 csv_path = 'productos_scrapeados.csv'
 if os.path.exists(csv_path):
@@ -204,4 +194,4 @@ os.chdir(output_dir)
 # Commit and push
 subprocess.run(['git', 'add', 'productos_scrapeados.csv'], check=True)
 subprocess.run(['git', 'commit', '-m', 'Subiendo archivo CSV automáticamente desde Colab'], check=True)
-subprocess.run(['git', 'push', 'origin', 'main'], check=True)  # or the branch you are using
+subprocess.run(['git', 'push'], check=True)
