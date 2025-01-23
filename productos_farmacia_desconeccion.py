@@ -174,6 +174,12 @@ for url in urls:
         print(f"Error al scrapeando {url}: {e}")
 
 import subprocess
+import os
+
+# Ensure the output directory exists
+output_dir = 'Medicamentos'
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
 # Install Git if not installed
 subprocess.run(['sudo', 'apt-get', 'install', '-y', 'git'], check=True)
@@ -185,9 +191,15 @@ subprocess.run(['git', 'config', '--global', 'user.email', 'martinazubaran@gmail
 # Clone the repository (only the first time)
 subprocess.run(['git', 'clone', 'https://github.com/MartinaZubaran/Medicamentos.git'], check=True)
 
-# Move to the repository directory
-subprocess.run(['mv', 'productos_scrapeados.csv', 'Medicamentos/productos_scrapeados.csv'], check=True)
-subprocess.run(['cd', 'Medicamentos'], shell=True)
+# Move the generated CSV file to the repository folder
+csv_path = 'productos_scrapeados.csv'
+if os.path.exists(csv_path):
+    subprocess.run(['mv', csv_path, f'{output_dir}/productos_scrapeados.csv'], check=True)
+else:
+    print(f"File {csv_path} does not exist.")
+
+# Change directory to the repository
+os.chdir(output_dir)
 
 # Commit and push
 subprocess.run(['git', 'add', 'productos_scrapeados.csv'], check=True)
