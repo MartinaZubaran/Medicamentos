@@ -148,21 +148,21 @@ def scrap(url):
     # Guardar datos en archivo CSV
     guardar_datos_csv(pd_datos_extraidos, archivo_csv)
 
-    contador += len(datos['producto'])  # Incrementar el contador con la cantidad de productos scrapeados
+#    contador += len(datos['producto'])  # Incrementar el contador con la cantidad de productos scrapeados
 
-    if contador >= 100:
-        print("Límite de 100 productos alcanzado. Desconectando de Colab...")
-        desconectar_y_reconectar()
+#    if contador >= 100:
+#        print("Límite de 100 productos alcanzado. Desconectando de Colab...")
+#        desconectar_y_reconectar()
 
-    return pd_datos_extraidos
+#    return pd_datos_extraidos
 
 # Función para simular desconexión y reconexión
-def desconectar_y_reconectar():
-    print("Guardando estado...")
-    time.sleep(5)
-    print("Desconectando... Por favor, reconecta manualmente y vuelve a ejecutar el script.")
-    os.system("kill -9 $(ps aux | grep '[p]ython' | awk '{print $2}')")
-    exit()
+#def desconectar_y_reconectar():
+ #   print("Guardando estado...")
+#    time.sleep(5)
+#    print("Desconectando... Por favor, reconecta manualmente y vuelve a ejecutar el script.")
+#    os.system("kill -9 $(ps aux | grep '[p]ython' | awk '{print $2}')")
+#    exit()
 
 # Scraping de todas las URLs
 for url in urls:
