@@ -173,21 +173,23 @@ for url in urls:
     except Exception as e:
         print(f"Error al scrapeando {url}: {e}")
 
-# Instalar Git si no está instalado
-!apt-get install git
+import subprocess
 
-# Configuración de Git
-!git config --global user.name "MartinaZubaran"
-!git config --global user.email "martinazubaran@gmail.com"
+# Install Git if not installed
+subprocess.run(['sudo', 'apt-get', 'install', '-y', 'git'], check=True)
 
-# Clonar el repositorio (solo la primera vez)
-!git clone https://github.com/MartinaZubaran/Medicamentos.git
-%cd tu_repositorio
+# Git configuration
+subprocess.run(['git', 'config', '--global', 'user.name', 'MartinaZubaran'], check=True)
+subprocess.run(['git', 'config', '--global', 'user.email', 'martinazubaran@gmail.com'], check=True)
 
-# Mover el archivo CSV generado a la carpeta del repositorio
-!mv /content/productos_scrapeados.csv ./productos_scrapeados.csv
+# Clone the repository (only the first time)
+subprocess.run(['git', 'clone', 'https://github.com/MartinaZubaran/Medicamentos.git'], check=True)
+subprocess.run(['cd', 'tu_repositorio'], shell=True)
 
-# Hacer commit y push
-!git add productos_scrapeados.csv
-!git commit -m "Subiendo archivo CSV automáticamente desde Colab"
-!git push origin main  # o la rama que estés usando
+# Move the generated CSV file to the repository folder
+subprocess.run(['mv', '/content/productos_scrapeados.csv', './productos_scrapeados.csv'], check=True)
+
+# Commit and push
+subprocess.run(['git', 'add', 'productos_scrapeados.csv'], check=True)
+subprocess.run(['git', 'commit', '-m', 'Subiendo archivo CSV automáticamente desde Colab'], check=True)
+subprocess.run(['git', 'push', 'origin', 'main'], check=True)  # or the branch you are using
